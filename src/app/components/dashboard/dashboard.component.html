@@ -1,0 +1,36 @@
+<div *ngIf = "mostrarError" class="alert alert-dismissible alert-warning">
+    <div class="text-center">
+            <i class="fas fa-exclamation-triangle"></i><p class="mb-0">Error al obtener el clima</p>        
+    </div>
+    
+  </div>
+<div class="container pt-4">
+    <div class="row mt-4">
+        <div class="col-lg-4">
+            <img [src] = 'imgUrl' alt="Clima" width="300px" height="300px">
+        </div>
+        <div class="col-lg-6 mt-4">
+            <input type="text" [(ngModel)] = "ciudad" class="form-control form-control-lg size" placeholder="Ingrese Ciudad">
+            <button class="btn-primary btn-lg btn-block mt-4 size" [disabled] = "ciudad == '' " (click) = "obtenerClima()">
+                Obtener Clima
+            </button>
+            <div *ngIf="loading" class="d-flex justify-content-center mt-5">
+                <div class="spinner-border text-secondary" role="status">
+                    <span class="visually-hidden"></span>
+                </div>
+            </div>
+            
+            <div *ngIf = "query" class="card mt-3">
+                <div class="card-body">
+                    <div class="text-center"><h2>{{nombre}}</h2></div>
+                    <p><strong>Sensación térmica: </strong> {{sensacionTer | number: '1.2-2'}} °C </p>
+                    <p><strong>Temperatura: </strong> {{temperatura | number: '1.2-2'}} °C </p>
+                    <p><strong>Humedad: </strong> {{ humedad }} % </p>
+                    <p><strong>Presión: </strong> {{ presion }} hPa </p>
+                    <p><strong>Clima: </strong> {{ clima }} </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
